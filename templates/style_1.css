@@ -1,0 +1,30 @@
+#register_login{
+    margin: 10px;
+    text-align: right;
+}
+.outer_box{
+    color: goldenrod;
+    background-color: black;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+#header{
+    color :rgba(204, 13, 13, 0.933)
+}
+
+.content{
+    color: goldenrod;
+    background-color: black;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+#navigation{
+    color: goldenrod;
+    background-color: rgb(81, 87, 110);
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
