@@ -7,33 +7,49 @@
 
 <h2>Add Trek</h2>
 
-<form>
+<form action="#" method ="POST">
 
 <label>Trek Name:</label>
-<input type="text">
+<input type="text" name ="trek_name">
 <br><br>
 
 <label>Location:</label>
-<input type="text">
+<input type="text" name ="location">
+<br><br>
+<label>Price:</label>
+<input type="number" name ="price">
 <br><br>
 
 <label>Difficulty:</label>
-<select>
-    <option>Easy</option>
-    <option>Moderate</option>
-    <option>Hard</option>
+<select name = "difficulty">
+    <option value="">--select--</option>
+
+    <option value="easy">Easy</option>
+    <option value = "moderate">Moderate</option>
+    <option value ="hard">Hard</option>
 </select>
 <br><br>
 
 <label>Duration:</label>
-<input type="number">
+<input type="number" name ="duration">
+<br><br>
+<label>Total Seat :</label>
+<input type="number" name = "total_seat">
 <br><br>
 
-<label>Available Slots:</label>
-<input type="number">
-<br><br>
+<label for="status"> Status </label>
+<select name = "status">
+    <option value="">--select--</option>
+    <option value = "open">Open</option>
+    <option value ="close">Close</option>
+</select>
 
-<input type="submit" value="Add Trek">
+
+
+<label for="assigned_staff_id">Assigned Staff Id: </label>
+<input type="number" name ="assigned_staff_id" id ="assigned_staff_id"  >
+
+<button type="submit" > Add </button>
 
 </form>
 

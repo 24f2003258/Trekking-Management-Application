@@ -1,43 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Register</title>
     <style>
-        body{
-            background-image: url('trek_2.png');
-            background-size: cover;
-            opacity:0.9;
-        }
+      body {
+        background-image: url("/static/trek_2.png");
+        background-size: cover;
+        opacity: 0.9;
+      }
     </style>
-    <link rel="stylesheet" href="style_1.css">
-</head>
+    <link rel="stylesheet" href="/static/style_1.css" />
+  </head>
 
-<body>
-<div class="outer_box">
-    <div style ="text-align: left;"">
-            <img src="logo_Trekking.png" alt="Trekking Management System Logo" style="width:100px;">
+  <body>
+    <div class="outer_box">
+      <div style="text-align: left">
+        <img
+          src="/static/logo_Trekking.png"
+          alt="Trekking Management System Logo"
+          style="width: 100px"
+        />
+      </div>
+      <a href="/">Go To Home</a>
+
+      <h2>User Registration</h2>
+
+      <form action="#" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+        <br /><br />
+
+        <label>Email:</label>
+        <input type="email" name="email" />
+        <br /><br />
+
+        <label>Password:</label>
+        <input type="password" name="password" />
+        <br /><br />
+
+        <label for="phone">Phone :</label>
+        <input type="tele" name="phone" id="phone" />
+        <br /><br />
+
+        <label for="role">Role </label>
+        <select id="role" name="role">
+          <option value="">--Select Role--</option>
+          <option value="user">User</option>
+          <option value="staff">Staff</option>
+        </select>
+        <button type="submit">Register</button>
+      </form>
     </div>
-        <a href="1_home.html">Go To Home</a>
-    
-<h2>User Registration</h2>
-
-<form action="4.2_user_dashboard.html" method="post ">
-
-<label>Name:</label>
-<input type="text" name="name">
-<br><br>
-
-<label>Email:</label>
-<input type="email" name="email">
-<br><br>
-
-<label>Password:</label>
-<input type="password" name="password">
-<br><br>
-
-<input type="submit" value="Register">
-
-</form>
-</div>
-</body>
+  </body>
 </html>

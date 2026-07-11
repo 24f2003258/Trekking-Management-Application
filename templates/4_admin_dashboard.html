@@ -1,19 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Trekking Management System</title>
+
+    <link rel="stylesheet" href="/static/4_admin_dashboard.css">
 </head>
+
 <body>
 
-<h1>Admin Dashboard</h1>
+<div class="sidebar">
 
-<ul>
-    <li><a href="5_add_trek.html">Add Trek</a></li>
-    <li><a href="6_manage_treks.html">Manage Treks</a></li>
-    <li><a href="7_manage_staff.html">Manage Staff</a></li>
-    <li><a href="8_manage_users.html">Manage Users</a></li>
-    <li><a href="9_assign_staff.html">Assign Staff</a></li>
-</ul>
+    <h2>Trekking MS</h2>
+
+    <ul>
+
+        <li><a href="{{ url_for('admin_dashboard') }}">🏠 Dashboard</a></li>
+
+        <li><a href="{{ url_for('add_trek') }}">🥾 Add Trek</a></li>
+
+        <li><a href="{{ url_for('manage_treks') }}">📍 Manage Treks</a></li>
+
+        <li><a href="{{ url_for('manage_staff') }}">👨‍💼 Manage Staff</a></li>
+
+        <li><a href="{{ url_for('manage_users') }}">👥 Manage Users</a></li>
+
+        <li><a href="{{ url_for('assign_staff') }}">📅 Assign Staff</a></li>
+
+        <li><a href="#">📖 Bookings</a></li>
+
+        <li><a href="#">📊 Reports</a></li>
+
+        <li><a href="{{ url_for('logout') }}">🚪 Logout</a></li>
+
+    </ul>
+
+</div>
+
+
+<div class="main">
+
+    <div class="topbar">
+
+        <h1>Admin Dashboard</h1>
+
+        <h3>Welcome, Admin</h3>
+
+    </div>
+
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>25</h2>
+            <p>Total Treks</p>
+        </div>
+
+        <div class="card">
+            <h2>320</h2>
+            <p>Users</p>
+        </div>
+
+        <div class="card">
+            <h2>35</h2>
+            <p>Staff</p>
+        </div>
+
+        <div class="card">
+            <h2>180</h2>
+            <p>Bookings</p>
+        </div>
+
+    </div>
+
+
+
+    <div class="content">
+
+        <div class="box">
+
+            <h2>Recent Bookings</h2>
+
+            <table>
+
+                <tr>
+                    <th>User</th>
+                    <th>Trek</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Amit</td>
+                    <td>Kedarkantha</td>
+                    <td>Confirmed</td>
+                </tr>
+
+                <tr>
+                    <td>Rahul</td>
+                    <td>Hampta Pass</td>
+                    <td>Pending</td>
+                </tr>
+
+                <tr>
+                    <td>Priya</td>
+                    <td>Valley of Flowers</td>
+                    <td>Confirmed</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+        <div class="box">
+
+            <h2>Quick Actions</h2>
+
+            <div class="buttons">
+
+                <a href="{{ url_for('add_trek') }}">Add Trek</a>
+
+                <a href="{{ url_for('manage_treks') }}">Manage Treks</a>
+
+                <a href="{{ url_for('manage_staff') }}">Manage Staff</a>
+
+                <a href="{{ url_for('manage_users') }}">Manage Users</a>
+
+                <a href="{{ url_for('assign_staff') }}">Assign Staff</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
