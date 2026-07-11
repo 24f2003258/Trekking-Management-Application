@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="style_1.css">
+    <title>Login Dashboard</title>
     <style>
-        body{
-            background-image: url('trek_3.png');
+        .Cover{
+        
             background-size: cover;
-            opacity:0.9;
+            
+        }
+        .outer_box {
+            width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(182, 19, 19, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(158, 8, 8, 0.5);
         }
     </style>
 </head>
 
 <body>
+    <form action="{{ url_for('login') }}" method="POST">
+    <div class="Cover">
     <div class="outer_box">
-        <div style ="text-align: left;"">
+        <div style ="text-align: left;">
             <img src="logo_Trekking.png" alt="Trekking Management System Logo" style="width:100px;">
         </div>
         <a href="1_home.html">Go To Home</a>
+
+        <h2>Login Dashboard</h2>
+            
     
-        <h2>Login</h2>
 
-        <form>
-
-        <label>Email:</label>
-        <input type="email" name="email">
-        <br><br>
-
-        <label>Password:</label>
-        <input type="password" name="password">
-    <br><br>
-
-    <input type="submit" value="Login">
-
-        </form>
+        <div>
+            <a href ="user_login">Login as User</a>
+        </div>
+        <div>
+            <a href ="2.2_login_staff.html">Login as Staff</a>
+        </div>
+        <div>
+            <a href ="2.3_login_admin.html">Login as Admin</a>
+        </div>  
     </div>
-
     
+    </div>
+    </form>
 </body>
 </html>
