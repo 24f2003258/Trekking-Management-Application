@@ -1,39 +1,30 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
 
-/* Sidebar */
-
-.sidebar{
-width:250px;
-height:100vh;
-background:#0f172a;
-position:fixed;
-}
-
-.sidebar ul li a{
-display:block;
-padding:18px;
-color:rgba(195, 213, 32, 0.606);
-border-bottom:1px solid #283b55;
-}
-
-/* Main */
-
-.main{
-margin-left:250px;
-width:100%;
-padding:30px;
-}
-
-/* Topbar */
 .topbar{
-background:white;
+background:rgb(15, 15, 15);
 padding:20px;
 border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
+box-shadow:0 2px 10px rgba(202, 22, 214, 0.1);
 margin-bottom:30px;
+}
+h2{
+    color : rgb(205, 173, 12)
+}
+.content{
+background-color: rgb(81, 78, 75);
+    text-decoration: none;
+    text-align:center;
+    height: 200px;
+    background-color: #1f2937;
+}
+a{
+    text-decoration: none;
+    color :goldenrod;
+}
+body{
+    background-image: url("/static/trek_5.png");
+    background-size: cover;
+}
+#footer{
+        background-color: black;
+        color :antiquewhite
 }

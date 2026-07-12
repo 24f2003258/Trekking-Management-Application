@@ -6,18 +6,27 @@
     <title>Admin Dashboard | </title>
 
     <link rel="stylesheet" href="/static/4_admin_dashboard.css">
+    <style>
+      #footer{
+        background-color: black;
+        color :antiquewhite
+      }
+    </style>
 </head>
 
 <body>
+    <div style ="text-align: left;">
+      <img src="/static/logo_Trekking.png" alt="Trekking Management System Logo" style="width:100px;">
+    </div>
     <div class="sidebar">
     <ul>
         <li><a href="/">Dashboard</a></li>
         <li><a href="/add_trek">Add Trek</a></li>
-        <li><a href=""> Manage Treks</a></li>
-        <li><a href="">Manage Staff</a></li>
-        <li><a href="">Manage Users</a></li>
-        <li><a href="">Assign Staff</a></li>
-        <li><a href="/">Logout</a></li>
+        <li><a href="/manage_treks"> Manage Treks</a></li>
+        <li><a href="/manage_staff">Manage Staff</a></li>
+        <li><a href="/manage_users">Manage Users</a></li>
+        <li><a href="/assign_staff">Assign Staff</a></li>
+        <li><a href="/logout">Logout</a></li>
     </ul>
     </div>
 
@@ -41,26 +50,26 @@
       <tr>
         <th>Total User</th>
         <th>{{total_user}}</th>
-        <th><a href="/view_all_users"> view all </a></th>
+        <th><a href="/viewAllUsers"> view all </a></th>
       </tr>
 
       <tr>
         <th>Total Staff</th>
         <th>{{total_staff}}</th>
-        <th><a href="/view_all_staffs"> view all </a></th>
+        <th><a href="/viewAllStaffs"> view all </a></th>
       </tr><tr>
         <th>Pending staff</th>
         <th>{{pending_staff}}</th>
-        <th><a href="/pending_staff"> view all </a></th>
+        <th><a href="/pendingStaffs"> view all </a></th>
       </tr><tr>
         <th>Blacklisted Staff</th>
         <th>{{blacklisted_staff }}</th>
-        <th><a href="/blacklisted_staff"> view all </a></th>
+        <th><a href="/blacklistedStaffs"> view all </a></th>
       </tr>
 <tr>
         <th>Blacklisted User</th>
         <th>{{blacklisted_user}}</th>
-        <th><a href="/blacklisted_user"> view all </a></th>
+        <th><a href="/blacklistedUsers"> view all </a></th>
       </tr>
       </table>
 
@@ -74,11 +83,11 @@
       </tr><tr>
         <th>Open Treks</th>
         <th>{{open_trek}}</th>
-        <th><a href="/open_treks"> view all </a></th>
+        <th><a href="/openTreks"> view all </a></th>
       </tr><tr>
         <th>Closed Treks</th>
         <th>{{close_trek}}</th>
-        <th><a href="/closed_treks"> view all </a></th>
+        <th><a href="/closedTreks"> view all </a></th>
       </tr>
       <tr>
         <th>Completed Treks</th>

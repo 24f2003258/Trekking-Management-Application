@@ -1,14 +1,11 @@
-from flask import Flask , render_template ,redirect ,request 
+from flask import Flask , render_template ,redirect ,request ,session
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = "trek_secret_key"
 
-
-
 # connecting to database 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///trekking.db"
-
 
 db = SQLAlchemy(app)
 
@@ -112,6 +109,9 @@ def login():
         
         if selected_user is not None :
             if selected_user.password == password :
+                session["user_id"] = selected_user.user_id
+                session["role"] = selected_user.role
+                session["name"] = selected_user.name
                 if(selected_user.role == "admin"):
                     return redirect("/admin_dashboard")
                 elif(selected_user.role == "staff"):
@@ -123,7 +123,10 @@ def login():
         
     return render_template("2.1_login.html")
 
-
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/login")
 
 @app.route("/staff_dashboard")
 def staff_dashboard():
@@ -136,7 +139,39 @@ def user_dashboard():
 
 @app.route("/admin_dashboard")
 def admin_dashboard():
+    if (session.get("role") != "admin" ):
+        return "Cann't Access Authorized !"
     return render_template("4_admin_dashboard.html")
+
+
+
+@app.route("/viewAllUsers")
+def viewAllUsers():
+    AllUsers = User.query.filter_by(role="user").all()
+    
+    return render_template("viewAllUsers.html" ,all_users = AllUsers)
+
+
+
+@app.route("/viewAllStaffs")
+def viewAllStaff():
+    allStaffs = User.query.filter_by(role="staff")
+    return render_template("viewAllUsers.html",all_users = allStaffs )
+
+@app.route("/pendingStaffs")
+def viewAllPendingStaffs():
+    allPendingStaffs = User.query.filter_by(role = "staff",status ="pending")
+    return render_template("viewAllUsers.html",all_users = allPendingStaffs )
+
+@app.route("/blacklistedStaffs")
+def blacklistedStaffs():
+    blacklistedStaffs = User.query.filter_by(role = "staff",is_blacklisted =True)
+    return render_template("viewAllUsers.html",all_users = blacklistedStaffs )
+
+@app.route("/blacklistedUsers")
+def blacklistedUsers():
+    blacklistedUsers = User.query.filter_by(role = "user",is_blacklisted =True)
+    return render_template("viewAllUsers.html",all_users = blacklistedUsers )
 
 
 # Trek Creation 
@@ -168,38 +203,57 @@ def create_trek():
         
         db.session.add(new_trek)
         db.session.commit()
-        return redirect("/view_all_trek")
+        return redirect("/viewTreks")
     
     
     return render_template("5_add_trek.html")
     
 
+@app.route("/manage_treks")
+def manage_treks():
+    return render_template("6_manage_treks.html")
+
+
 # manage staff
 @app.route("/manage_staff")
-def Manage_Staff():
+def manage_staff():
     return render_template("7_manage_staff.html")
 
+
+
+
 # manage users
-@app.route("/manage_user")
-def Manage_User():
+@app.route("/manage_users")
+def manage_user():
     return render_template("8_manage_users.html")
 
-@app.route()
+@app.route("/assign_staff")
+def assign_staff():
+    return render_template("9_assign_staff.html")
+
+@app.route("/assigned_trek")
+def assigned_trek():
+    return render_template("10_assigned_treks.html")
 
 
 
 
+@app.route("/viewTreks")
+def viewTrek():
+    viewAllTrek = Trek.query.all()
+    return render_template("14_View_Treks.html", Treks = viewAllTrek)
 
+@app.route("/openTreks")
+def openTreks():
+    openTreks = Trek.query.filter_by(status ="open").all()
+    return render_template("14_View_Treks.html",Treks = openTreks)
+    
+@app.route("/closeTreks")
+def closeTreks():
+    closeTreks = Trek.query.filter_by(status ="close").all()
+    return render_template("14_View_Treks.html",Treks = closeTreks)
 
-
-
-
-
-
-
-
-
-
+    
 
 # Creating admin 
 
@@ -219,6 +273,37 @@ with app.app_context():
         db.session.add(new_admin)
         db.session.commit()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/check_session")
+def check_session():
+
+    return f"""
+    User ID : {session.get('user_id')} <br>
+    Name : {session.get('name')} <br>
+    Role : {session.get('role')}
+    """
 
 
 

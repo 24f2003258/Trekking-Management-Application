@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1><u> All Users</u></h1>
+
+<form method="GET" class ="search-area">
+  <input type="text" name="search" placeholder="Search User Name" />
+  <button type="submit">Search</button>
+
+</form>
+
+
+<div class="view_all_users">
+    
+    
+</form>
+<table border="black" >
+    <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th> Is Blacklisted </th>
+        <th> Actions </th>
+    </tr>
+    {%for user in all_users%}
+  <tr>
+    <td>{{user.user_id}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.phone}}</td>
+
+    {%if user.is_blacklisted%}
+    <td>Yes</td>
+    {%else%}
+    <td>No</td>
+    {%endif%}
+    <td><a href="/blacklistStaff/{{user.id}}"> Blacklist </a></td>
+  </tr>
+  {%endfor%}
+</table>
+</div>
+
+
+</body>
+</html>
