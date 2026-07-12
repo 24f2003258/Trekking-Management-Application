@@ -3,140 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | Trekking Management System</title>
+    <title>Admin Dashboard | </title>
 
     <link rel="stylesheet" href="/static/4_admin_dashboard.css">
 </head>
 
 <body>
-
-<div class="sidebar">
-
-    <h2>Trekking MS</h2>
-
+    <div class="sidebar">
     <ul>
-
-        <li><a href="{{ url_for('admin_dashboard') }}">🏠 Dashboard</a></li>
-
-        <li><a href="{{ url_for('add_trek') }}">🥾 Add Trek</a></li>
-
-        <li><a href="{{ url_for('manage_treks') }}">📍 Manage Treks</a></li>
-
-        <li><a href="{{ url_for('manage_staff') }}">👨‍💼 Manage Staff</a></li>
-
-        <li><a href="{{ url_for('manage_users') }}">👥 Manage Users</a></li>
-
-        <li><a href="{{ url_for('assign_staff') }}">📅 Assign Staff</a></li>
-
-        <li><a href="#">📖 Bookings</a></li>
-
-        <li><a href="#">📊 Reports</a></li>
-
-        <li><a href="{{ url_for('logout') }}">🚪 Logout</a></li>
-
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/add_trek">Add Trek</a></li>
+        <li><a href=""> Manage Treks</a></li>
+        <li><a href="">Manage Staff</a></li>
+        <li><a href="">Manage Users</a></li>
+        <li><a href="">Assign Staff</a></li>
+        <li><a href="/">Logout</a></li>
     </ul>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <h1>Admin Dashboard</h1>
+            <h3>Welcome, Admin</h3>
+        </div>
+
+     
+
+        
+    <h3>User and Staff </h3>
+    <table border ="black">
+      <tr >
+        <th>Statistic </th>
+        <th>Count</th>
+        <th>Action</th>
+      </tr>
+
+      <tr>
+        <th>Total User</th>
+        <th>{{total_user}}</th>
+        <th><a href="/view_all_users"> view all </a></th>
+      </tr>
+
+      <tr>
+        <th>Total Staff</th>
+        <th>{{total_staff}}</th>
+        <th><a href="/view_all_staffs"> view all </a></th>
+      </tr><tr>
+        <th>Pending staff</th>
+        <th>{{pending_staff}}</th>
+        <th><a href="/pending_staff"> view all </a></th>
+      </tr><tr>
+        <th>Blacklisted Staff</th>
+        <th>{{blacklisted_staff }}</th>
+        <th><a href="/blacklisted_staff"> view all </a></th>
+      </tr>
+<tr>
+        <th>Blacklisted User</th>
+        <th>{{blacklisted_user}}</th>
+        <th><a href="/blacklisted_user"> view all </a></th>
+      </tr>
+      </table>
+
+
+      <h3>Trek Information</h3>
+      <table border="black">
+      <tr>
+        <th>Total Treks</th>
+        <th>{{total_trek}}</th>
+        <th><a href="/view_all_trek"> view all </a></th>
+      </tr><tr>
+        <th>Open Treks</th>
+        <th>{{open_trek}}</th>
+        <th><a href="/open_treks"> view all </a></th>
+      </tr><tr>
+        <th>Closed Treks</th>
+        <th>{{close_trek}}</th>
+        <th><a href="/closed_treks"> view all </a></th>
+      </tr>
+      <tr>
+        <th>Completed Treks</th>
+        <th>{{complete_trek}}</th>
+        <th><a href="/completed_treks"> view all </a></th>
+      </tr>
+      <tr>
+        <th>Total Bookings</th>
+        <th>{{total_booking}}</th>
+        <th><a href="/total_bookings"> view all </a></th>
+      </tr>
+      <tr>
+        <th>Total Revenue </th>
+        <th>{{total_revenue}}</th>
+        <th><a href="/total_revenue"> view all </a></th>
+      </tr>
+    </table>
+
+
 
 </div>
-
-
-<div class="main">
-
-    <div class="topbar">
-
-        <h1>Admin Dashboard</h1>
-
-        <h3>Welcome, Admin</h3>
-
-    </div>
-
-
-
-    <div class="cards">
-
-        <div class="card">
-            <h2>25</h2>
-            <p>Total Treks</p>
-        </div>
-
-        <div class="card">
-            <h2>320</h2>
-            <p>Users</p>
-        </div>
-
-        <div class="card">
-            <h2>35</h2>
-            <p>Staff</p>
-        </div>
-
-        <div class="card">
-            <h2>180</h2>
-            <p>Bookings</p>
-        </div>
-
-    </div>
-
-
-
-    <div class="content">
-
-        <div class="box">
-
-            <h2>Recent Bookings</h2>
-
-            <table>
-
-                <tr>
-                    <th>User</th>
-                    <th>Trek</th>
-                    <th>Status</th>
-                </tr>
-
-                <tr>
-                    <td>Amit</td>
-                    <td>Kedarkantha</td>
-                    <td>Confirmed</td>
-                </tr>
-
-                <tr>
-                    <td>Rahul</td>
-                    <td>Hampta Pass</td>
-                    <td>Pending</td>
-                </tr>
-
-                <tr>
-                    <td>Priya</td>
-                    <td>Valley of Flowers</td>
-                    <td>Confirmed</td>
-                </tr>
-
-            </table>
-
-        </div>
-
-
-        <div class="box">
-
-            <h2>Quick Actions</h2>
-
-            <div class="buttons">
-
-                <a href="{{ url_for('add_trek') }}">Add Trek</a>
-
-                <a href="{{ url_for('manage_treks') }}">Manage Treks</a>
-
-                <a href="{{ url_for('manage_staff') }}">Manage Staff</a>
-
-                <a href="{{ url_for('manage_users') }}">Manage Users</a>
-
-                <a href="{{ url_for('assign_staff') }}">Assign Staff</a>
-
-            </div>
-
-        </div>
-
-    </div>
-
 </div>
-
+    <div id ="footer">
+        <p>IIT Madras BS Degree Project © TERM : MAY 2026</p>
+    </div>
 </body>
 </html>

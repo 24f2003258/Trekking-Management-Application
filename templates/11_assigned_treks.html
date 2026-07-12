@@ -1,27 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Assigned Treks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
+    
+    <table border = "black">
+      <tr>
+        <th>Trek ID</th>
+        <th>Trek Name</th>
+     
+        <th>Location</th>
+        <th>Price</th>
+        <th>Duration</th>
+        <th>Start Date</th>
+        <th>End Date </th>
+        <th>Status </th>
+        
+      </tr>
+        {% for trek in assigned_trek %}
+            <tr>
+            <td>{{trek.trek_id}}</td>
+            <td>{{trek.trek_name}}</td>
+            <td>{{trek.location}}</td>
+            <td>{{trek.price}}</td>
+            <td>{{trek.duration}}</td>
+            <td>{{trek.start_date}}</td>
+            <td>{{trek.end_date}}</td>
+            <td>{{trek.status}}</td>
+            <td>
+                <a href="/view_participants/{{trek.trek_id}}">View Participants</a>
+            </td>
+            
+             </tr>
 
-<h2>Assigned Treks</h2>
+        {%endfor%}
+    </table>
 
-<table border="1">
 
-<tr>
-    <th>Trek Name</th>
-    <th>Location</th>
-    <th>Status</th>
-</tr>
+    {%else %}
+        <h3> No Treks Available at the Moment </h3>
+    {%endif %}
 
-<tr>
-    <td>Kedarkantha</td>
-    <td>Uttarakhand</td>
-    <td>Open</td>
-</tr>
-
-</table>
 
 </body>
 </html>
