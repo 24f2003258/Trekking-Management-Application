@@ -254,6 +254,11 @@ def closeTreks():
     return render_template("14_View_Treks.html",Treks = closeTreks)
 
     
+@app.route('/myBookings')
+def myBookings():
+    return render_template('my_bookings.html')
+
+
 
 # Creating admin 
 

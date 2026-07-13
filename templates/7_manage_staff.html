@@ -17,15 +17,15 @@
     <th>Status</th>
     <th>Is_Blocklisted</th>
 </tr>
-
+{% for Staff in Staffs}
 <tr>
-    <td>{{Staf}}</td>
-    <td>{{Name}}</td>
-    <td>{{Pending}}</td>
+    <td>{{Staff.Id}}</td>
+    <td>{{Staff.Name}}</td>
+    <td>{{Staff.Pending}}</td>
     <td>
-        <select>
+        <select name =" status">
             <option value ="blocklisted">Blocklisted</option>
-            <optio
+            <option value = "unblocklisted">UnBlocklisted</option>
         </select>
     </td>
 </tr>

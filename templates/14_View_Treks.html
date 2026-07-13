@@ -3,46 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>View Treks</title>
+
+    <style>
+        h1{
+            text-align:center;
+        }
+        
+        .card-container{
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+            justify-content:center;
+        }
+
+        .card{
+            width:280px;
+            background:white;
+            border:1px solid #ccc;
+            border-radius:6px;
+            padding:15px;
+            box-shadow:2px 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .card h3{
+            margin-top:0;
+            color:#2c3e50;
+            text-align:center;
+        }
+
+        .card p{
+            margin:8px 0;
+        }
+
+        .buttons{
+            margin-top:15px;
+            text-align:center;
+        }
+
+        .buttons a{
+            text-decoration:none;
+            padding:6px 12px;
+            border-radius:4px;
+            color:white;
+            margin:5px;
+        }
+    </style>
+
 </head>
 <body>
-    <div style ="text-align: left;">
-        <img src="/static/logo_Trekking.png" alt="Trekking Management System Logo" style="width:100px;">
-    </div>
-    
-    <table border = "black">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Price</th>
-        <th>Duration</th>
-        <th>Total Seat</th>
-        <th>Available Seat</th>
-        <th>Status</th>
-        <th>Assigned Staff</th>
-        <th> Actions </th>
-      </tr>
-  {% for trek in Treks %}
-      <tr>
-        <td>{{trek.trek_id}}</td>
-        <td>{{trek.trek_name}}</td>
-        <td>{{trek.location}}</td>
-        <td>{{trek.price}}</td>
-        <td>{{trek.duration}}</td>
-        <td>{{trek.total_seat}}</td>
-        <td>{{trek.available_seat}}</td>
-        <td>{{trek.status}}</td>
-        <td>{{trek.assigned_staff_id}}</td>
-        <td>
-            <a href = "/edit_trek/{{trek.trek_id}}"  > Edit </a> 
-            |
-            <a href = "/delete_trek/{{trek.trek_id}}"> Delete </a>
-        </td>
-        
-      </tr>
 
-      {%endfor%}
-    </table>
+<div class="logo">
+    <img src="/static/logo_Trekking.png"
+         alt="Trekking Management System Logo"
+         width="100">
+</div>
+
+<h1>All Treks</h1>
+
+<div class="card-container">
+
+{% for trek in Treks %}
+
+<div class="card">
+
+    <h3>{{ trek.trek_name }}</h3>
+
+    <p><strong>ID:</strong> {{ trek.trek_id }}</p>
+
+    <p><strong>Location:</strong> {{ trek.location }}</p>
+
+    <p><strong>Price:</strong> ₹{{ trek.price }}</p>
+
+    <p><strong>Duration:</strong> {{ trek.duration }}</p>
+
+    <p><strong>Total Seats:</strong> {{ trek.total_seat }}</p>
+
+    <p><strong>Available Seats:</strong> {{ trek.available_seat }}</p>
+
+    <p><strong>Status:</strong> {{ trek.status }}</p>
+
+    <p><strong>Assigned Staff:</strong> {{ trek.assigned_staff_id }}</p>
+
+    <div class="buttons">
+        <a href="/edit_trek/{{ trek.trek_id }}" class="edit">Edit</a>
+
+        <a href="/delete_trek/{{ trek.trek_id }}" class="delete">Delete</a>
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div id ="footer" style ="color:white;background-color: black;">
+    <p>IIT Madras BS Degree Project © TERM : MAY 2026</p>
+</div>
 </body>
 </html>
