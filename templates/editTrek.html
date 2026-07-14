@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+<h1>Edit Trek</h1>
+<form action="/editTrek/{{trek.trek_id}}" method="POST">
+<div class ="edit_trek">
+  <label for="trek_name">Trek Name : </label>
+  <input type="text" name="trek_name" id="trek_name" value = "{{trek.trek_name}}" required/>
+
+  <label for="location">Location : </label>
+  <input type="text" name="location" id="location" value="{{trek.location}}" required/>
+
+  <label for="price">Price : </label>
+  <input type="number" name="price" id="price"  value="{{trek.price}}"    required/>
+
+  <label for="duration">Duration : </label>
+  <input type="text" name="duration" id="duration" value="{{trek.duration}}"    required/>
+
+  <label for="total_seat">Total Seat</label>
+  <input type="number" name="total_seat" id="total_seat" value ="{{trek.total_seat}}"     required/>
+
+  <label for="available_seat">Available Seat : </label>
+  <input type="number" name="available_seat" id="available_seat" value="{{trek.available_seat}}" required/>
+
+
+  <label for="difficulty">Difficulty: </label>
+  <input type="text" name="difficulty" id="difficulty" value="{{trek.difficulty}}" required/>
+
+  <label for="status">Status : </label>
+  <select name="status" id="status" value="{{trek.status}}" required/>
+    <option value="">--select--</option>
+    <option value="open">Open</option>
+    <option value="close">Close</option>
+    <option value="complete">Completed</option>
+  </select>
+
+  <label for="assigned_staff_id">Assigned Staff ID: </label>
+  <input type="number" name="assigned_staff_id" id="assigned_staff_id" value="{{trek.assigned_staff_id}}" required/>
+</div>
+  <button type = "submit" class="edit_trek_button"> Submit </button>
+</form>
+ 
+</body>
+</html>

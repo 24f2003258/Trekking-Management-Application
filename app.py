@@ -1,5 +1,6 @@
 from flask import Flask , render_template ,redirect ,request ,session
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "trek_secret_key"
@@ -130,17 +131,21 @@ def logout():
 
 @app.route("/staff_dashboard")
 def staff_dashboard():
+    if session.get("role") != "staff":
+        return "Cann't Access UnAuthorized !"
     return render_template("4.1_staff_dashboard.html")
 
 @app.route("/user_dashboard")
 def user_dashboard():
+    if (session.get("role") != "user" ):
+        return "Cann't Access UnAuthorized !"
     return render_template("4.2_user_dashboard.html")
 
 
 @app.route("/admin_dashboard")
 def admin_dashboard():
     if (session.get("role") != "admin" ):
-        return "Cann't Access Authorized !"
+        return "Cann't Access UnAuthorized !"
     return render_template("4_admin_dashboard.html")
 
 
@@ -209,35 +214,6 @@ def create_trek():
     return render_template("5_add_trek.html")
     
 
-@app.route("/manage_treks")
-def manage_treks():
-    return render_template("6_manage_treks.html")
-
-
-# manage staff
-@app.route("/manage_staff")
-def manage_staff():
-    return render_template("7_manage_staff.html")
-
-
-
-
-# manage users
-@app.route("/manage_users")
-def manage_user():
-    return render_template("8_manage_users.html")
-
-@app.route("/assign_staff")
-def assign_staff():
-    return render_template("9_assign_staff.html")
-
-@app.route("/assigned_trek")
-def assigned_trek():
-    return render_template("10_assigned_treks.html")
-
-
-
-
 @app.route("/viewTreks")
 def viewTrek():
     viewAllTrek = Trek.query.all()
@@ -253,15 +229,129 @@ def closeTreks():
     closeTreks = Trek.query.filter_by(status ="close").all()
     return render_template("14_View_Treks.html",Treks = closeTreks)
 
+@app.route("/completedTreks")
+def completedTreks():
+    completedTreks = Trek.query.filter_by(status ="completed").all()
+    return render_template("14_View_Treks.html",Treks = completedTreks)
+
+
+@app.route("/editTrek/<int:trek_id>" ,methods =["GET","POST"])
+def editTrek(trek_id):
+    selected_trek = Trek.query.filter_by(trek_id = trek_id).first()
+        
+    if request.method == "POST":
+        selected_trek.trek_name = request.form["trek_name"]
+        selected_trek.location = request.form["location"]
+        selected_trek.price  = request.form["price"] 
+        selected_trek.duration = request.form["duration"]
+        selected_trek.total_seat = request.form["total_seat"]
+        selected_trek.available_seat = selected_trek.total_seat 
+        selected_trek.status = request.form["status"]
+        selected_trek.assigned_staff_id = request.form["assigned_staff_id"]
+        selected_trek.difficulty = request.form["difficulty"]
+        
+        db.session.commit()
+        return redirect("/viewTreks")
     
-@app.route('/myBookings')
-def myBookings():
-    return render_template('my_bookings.html')
+    return render_template("editTrek.html" , trek = selected_trek )
+
+
+@app.route("/available_treks")
+def availableTrek():
+    openTreks = Trek.query.filter_by(status ="open").all()
+    return render_template("availableTrek.html",Treks = openTreks)
+
+@app.route("/manage_treks")
+def manage_treks():
+    return render_template("6_manage_treks.html")
+
+
+# manage staff
+@app.route("/approve_staff")
+def manage_staff():
+    return render_template("7_manage_staff.html")
+
+# manage users
+@app.route("/approveStaff/<int:staffId>")
+def approveStaff(staffId):
+    selectedStaff = User.query.filter_by( id = staffId).first()
+     
+    selectedStaff.status = "approve"
+    db.session.commit()
+    return redirect("s")
+
+@app.route("/assign_staff")
+def assign_staff():
+    return render_template("9_assign_staff.html")
+
+@app.route("/assigned_trek")
+def assigned_trek():
+    staffId = session.get("user_id")
+    if staffId is None : 
+        return redirect("/login/")
+    
+    allTreks = Trek.query.filter_by(assigned_staff_id = staffId).all()
+    return render_template("10_assigned_treks.html" , assigned_trek = allTreks)
+
+
+@app.route("/book_trek/<int:trek_id>", methods =["GET","POST"])
+def bookTrek(trek_id):
+    selectTrek = Trek.query.filter_by(trek_id = trek_id).first()
+    
+    if request.method == "POST":
+        
+        user_id = session.get("user_id") 
+        print(user_id)
+        
+        if user_id is None : 
+            return redirect("/login/")
+        
+        bookedSeat =int( request.form["people"])
+        selectTrek.available_seat -= bookedSeat 
+        
+        Book = Booking(
+            user_id = user_id ,
+            trek_id = selectTrek.trek_id ,
+            number_of_people = bookedSeat,
+            booking_date = datetime.today().date(),
+            booking_status  = "confirmed"
+        )
+        db.session.add(Book)
+        db.session.commit()
+        return redirect("/myBookings")
+    else :
+        return render_template("bookTrek.html" ,booking = selectTrek)
+
+
+
+    
+@app.route("/myBookings")
+def myBooking():
+    userId = session.get("user_id")
+    
+    if userId is None : 
+        return redirect("/login/")
+    
+    myBooking = Booking.query.filter_by(user_id = userId).all()
+    print(myBooking)
+    return render_template("booking.html", bookings = myBooking)
+
+
+@app.route("/view_participants/<int:trekId>")
+def viewParticiants(trekId):
+    
+    allParticipants = Booking.query.filter_by(trek_id = trekId).all()
+    
+    return render_template("viewParticipants.html",participants = allParticipants )
+    
+
+
+
+
 
 
 
 # Creating admin 
-
 with app.app_context():
     db.create_all()
     admin = User.query.filter_by(role ="admin").first()

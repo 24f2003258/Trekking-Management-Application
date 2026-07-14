@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<form method="GET" class ="search-area">
+  <input type="text" name="search" placeholder="Search Trek Name" />
+  <button type="submit">Search</button>
+
+</form>
+    
+<div class="view_all_users">
+    
+{%if participants%}
+    <table border = "black">
+      <tr>
+        <th>Booking ID</th>
+        <th>Name</th>
+        <th>Trek Name</th>
+        <th>Assigned Staff</th>
+        <th>No. Of People</th>
+        <th>Booking Date</th>
+        <th>Booking Status</th>
+        <th>Action </th>
+        
+      </tr>
+{% for participant in participants %}
+      <tr>
+        <td>{{participant.booking_id}}</td>
+        <td>{{participant.user_object.name}}</td>
+        <td>{{participant.trek_object.trek_name}}</td>
+        <td>{{participant.trek_object.user.name}}</td>
+        <td>{{participant.number_of_people}}</td>
+        <td>{{participant.booking_date}}</td>
+        <td>{{participant.booking_status}}</td>
+        <td>
+            <a href = "/complete_trek/{{participant.trek_id}}/{{participant.booking_id}}" > complete Task </a> 
+        </td>
+        
+      </tr>
+
+      {%endfor%}
+    </table>
+  </div>
+
+{%else %}
+<h3> No Participants for this Trek at the Moment !! </h3>
+{%endif%}
+</body>
+</html>

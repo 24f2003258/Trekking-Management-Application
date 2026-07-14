@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style ="text-align: left;">
+        <img src="/static/logo_Trekking.png" alt="Trekking Management System Logo" style="width:100px;">
+    </div>
+    
+    <table border = "black">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Price</th>
+        <th>Difficulty</th>
+        <th>Duration</th>
+        <th>Total Seat</th>
+        <th>Available Seat</th>
+        <th>Status</th>
+        <th>Assigned Staff</th>
+        <th> Actions </th>
+      </tr>
+  {% for trek in Treks %}
+      <tr>
+        <td>{{trek.trek_id}}</td>
+        <td>{{trek.trek_name}}</td>
+        <td>{{trek.location}}</td>
+        <td>{{trek.price}}</td>
+        <td>{{trek.difficulty}}
+        <td>{{trek.duration}}</td>
+        <td>{{trek.total_seat}}</td>
+        <td>{{trek.available_seat}}</td>
+        <td>{{trek.status}}</td>
+        <td>{{trek.assigned_staff_id}}</td>
+        <td>
+           <a href="/book_trek/{{trek.trek_id}}">Book Now </a>
+        </td>
+        
+      </tr>
+
+      {%endfor%}
+    </table>
+</body>
+</html>

@@ -66,6 +66,8 @@ h1{
     <button type="submit">Search</button>
 </form>
 
+<form action= # method="POST">
+
 <div class="view_all_users">
 
 {% for user in all_users %}
@@ -96,11 +98,16 @@ h1{
         Blacklist
     </a>
 
+    <a class="blacklisting" href="/approveStaff/{{ user.id }}">
+        Approve
+    </a>
+
 </div>
 
 {% endfor %}
 
 </div>
+</form>
 
 <div id ="footer" style ="color:white;background-color: black;">
     <p>IIT Madras BS Degree Project © TERM : MAY 2026</p>
